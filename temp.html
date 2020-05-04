@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>HTML Sudoku Board</title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+    
+      html, body {
+        background-color: #FAFAFA
+      }
+
+      table {
+        border: 2px solid #000000;
+      }
+
+      td {
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;  
+      }
+
+      input {
+        color: #000000;
+        padding: 0;
+        border: 0;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        background-color: #FFFFFF;
+        outline: none;
+      }
+
+      input {
+        background-color: #EEEEEE;
+      }
+
+      #grid0,  #grid1,  #grid2  { border-top:    2px solid #000000; }
+      #grid2,  #grid11, #grid20 { border-right:  2px solid #000000; }
+      #grid18, #grid19, #grid20 { border-bottom: 2px solid #000000; }
+      #grid0,  #grid9,  #grid18 { border-left:   2px solid #000000; }
+
+      #grid3,  #grid4,  #grid5  { border-top:    2px solid #000000; }
+      #grid5,  #grid14, #grid23 { border-right:  2px solid #000000; }
+      #grid21, #grid22, #grid23 { border-bottom: 2px solid #000000; }
+      #grid3,  #grid12, #grid21 { border-left:   2px solid #000000; }
+
+      #grid6,  #grid7,  #grid8  { border-top:    2px solid #000000; }
+      #grid8,  #grid17, #grid26 { border-right:  2px solid #000000; }
+      #grid24, #grid25, #grid26 { border-bottom: 2px solid #000000; }
+      #grid6,  #grid15, #grid24 { border-left:   2px solid #000000; }
+
+      #grid27, #grid28, #grid29 { border-top:    2px solid #000000; }
+      #grid29, #grid38, #grid47 { border-right:  2px solid #000000; }
+      #grid45, #grid46, #grid47 { border-bottom: 2px solid #000000; }
+      #grid27, #grid36, #grid45 { border-left:   2px solid #000000; }
+
+      #grid30, #grid31, #grid32 { border-top:    2px solid #000000; }
+      #grid32, #grid41, #grid50 { border-right:  2px solid #000000; }
+      #grid48, #grid49, #grid50 { border-bottom: 2px solid #000000; }
+      #grid30, #grid39, #grid48 { border-left:   2px solid #000000; }
+
+      #grid33, #grid34, #grid35 { border-top:    2px solid #000000; }
+      #grid35, #grid44, #grid53 { border-right:  2px solid #000000; }
+      #grid51, #grid52, #grid53 { border-bottom: 2px solid #000000; }
+      #grid33, #grid42, #grid51 { border-left:   2px solid #000000; }
+
+      #grid54, #grid55, #grid56 { border-top:    2px solid #000000; }
+      #grid56, #grid65, #grid74 { border-right:  2px solid #000000; }
+      #grid72, #grid73, #grid74 { border-bottom: 2px solid #000000; }
+      #grid54, #grid63, #grid72 { border-left:   2px solid #000000; }
+
+      #grid57, #grid58, #grid59 { border-top:    2px solid #000000; }
+      #grid59, #grid68, #grid77 { border-right:  2px solid #000000; }
+      #grid75, #grid76, #grid77 { border-bottom: 2px solid #000000; }
+      #grid57, #grid66, #grid75 { border-left:   2px solid #000000; }
+
+      #grid60, #grid61, #grid62 { border-top:    2px solid #000000; }
+      #grid62, #grid71, #grid80 { border-right:  2px solid #000000; }
+      #grid78, #grid79, #grid80 { border-bottom: 2px solid #000000; }
+      #grid60, #grid69, #grid78 { border-left:   2px solid #000000; }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      
+      <h1>HTML Sudoku Board</h1>
+
+      <table id="grid">
+
+        <tr>
+          <td><input id="grid0"  type="text"></td>
+          <td><input id="grid1"  type="text"></td>
+          <td><input id="grid2"  type="text"></td>
+          
+          <td><input id="grid3"  type="text"></td>
+          <td><input id="grid4"  type="text"></td>
+          <td><input id="grid5"  type="text"></td>
+          
+          <td><input id="grid6"  type="text"></td>
+          <td><input id="grid7"  type="text"></td>
+          <td><input id="grid8"  type="text"></td>
+        </tr>
+
+        <tr>
+          <td><input id="grid9"  type="text"></td>
+          <td><input id="grid10" type="text"></td>
+          <td><input id="grid11" type="text"></td>
+          
+          <td><input id="grid12" type="text"></td>
+          <td><input id="grid13" type="text"></td>
+          <td><input id="grid14" type="text"></td>
+          
+          <td><input id="grid15" type="text"></td>
+          <td><input id="grid16" type="text"></td>
+          <td><input id="grid17" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid18" type="text"></td>
+          <td><input id="grid19" type="text"></td>
+          <td><input id="grid20" type="text"></td>
+          
+          <td><input id="grid21" type="text"></td>
+          <td><input id="grid22" type="text"></td>
+          <td><input id="grid23" type="text"></td>
+          
+          <td><input id="grid24" type="text"></td>
+          <td><input id="grid25" type="text"></td>
+          <td><input id="grid26" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid27" type="text"></td>
+          <td><input id="grid28" type="text"></td>
+          <td><input id="grid29" type="text"></td>
+          
+          <td><input id="grid30" type="text"></td>
+          <td><input id="grid31" type="text"></td>
+          <td><input id="grid32" type="text"></td>
+          
+          <td><input id="grid33" type="text"></td>
+          <td><input id="grid34" type="text"></td>
+          <td><input id="grid35" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid36" type="text"></td>
+          <td><input id="grid37" type="text"></td>
+          <td><input id="grid38" type="text"></td>
+          
+          <td><input id="grid39" type="text"></td>
+          <td><input id="grid40" type="text"></td>
+          <td><input id="grid41" type="text"></td>
+          
+          <td><input id="grid42" type="text"></td>
+          <td><input id="grid43" type="text"></td>
+          <td><input id="grid44" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid45" type="text"></td>
+          <td><input id="grid46" type="text"></td>
+          <td><input id="grid47" type="text"></td>
+          
+          <td><input id="grid48" type="text"></td>
+          <td><input id="grid49" type="text"></td>
+          <td><input id="grid50" type="text"></td>
+          
+          <td><input id="grid51" type="text"></td>
+          <td><input id="grid52" type="text"></td>
+          <td><input id="grid53" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid54" type="text"></td>
+          <td><input id="grid55" type="text"></td>
+          <td><input id="grid56" type="text"></td>
+          
+          <td><input id="grid57" type="text"></td>
+          <td><input id="grid58" type="text"></td>
+          <td><input id="grid59" type="text"></td>
+          
+          <td><input id="grid60" type="text"></td>
+          <td><input id="grid61" type="text"></td>
+          <td><input id="grid62" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid63" type="text"></td>
+          <td><input id="grid64" type="text"></td>
+          <td><input id="grid65" type="text"></td>
+          
+          <td><input id="grid66" type="text"></td>
+          <td><input id="grid67" type="text"></td>
+          <td><input id="grid68" type="text"></td>
+          
+          <td><input id="grid69" type="text"></td>
+          <td><input id="grid70" type="text"></td>
+          <td><input id="grid71" type="text"></td>
+        </tr>
+
+        <tr>          
+          <td><input id="grid72" type="text"></td>
+          <td><input id="grid73" type="text"></td>
+          <td><input id="grid74" type="text"></td>
+          
+          <td><input id="grid75" type="text"></td>
+          <td><input id="grid76" type="text"></td>
+          <td><input id="grid77" type="text"></td>
+          
+          <td><input id="grid78" type="text"></td>
+          <td><input id="grid79" type="text"></td>
+          <td><input id="grid80" type="text"></td>
+        </tr>
+
+      </table>
+
+    </div>
+
+  </body>
+</html>

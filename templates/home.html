@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sudoku Solver!</title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+    
+      html, body {
+        background-color: #FAFAFA
+      }
+
+      table {
+        border: 2px solid #000000;
+      }
+
+      td {
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;  
+      }
+
+      input {
+        color: #000000;
+        padding: 0;
+        border: 0;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        background-color: #FFFFFF;
+        outline: none;
+      }
+
+      input {
+        background-color: #EEEEEE;
+      }
+
+      #grid0,  #grid1,  #grid2  { border-top:    2px solid #000000; }
+      #grid2,  #grid11, #grid20 { border-right:  2px solid #000000; }
+      #grid18, #grid19, #grid20 { border-bottom: 2px solid #000000; }
+      #grid0,  #grid9,  #grid18 { border-left:   2px solid #000000; }
+
+      #grid3,  #grid4,  #grid5  { border-top:    2px solid #000000; }
+      #grid5,  #grid14, #grid23 { border-right:  2px solid #000000; }
+      #grid21, #grid22, #grid23 { border-bottom: 2px solid #000000; }
+      #grid3,  #grid12, #grid21 { border-left:   2px solid #000000; }
+
+      #grid6,  #grid7,  #grid8  { border-top:    2px solid #000000; }
+      #grid8,  #grid17, #grid26 { border-right:  2px solid #000000; }
+      #grid24, #grid25, #grid26 { border-bottom: 2px solid #000000; }
+      #grid6,  #grid15, #grid24 { border-left:   2px solid #000000; }
+
+      #grid27, #grid28, #grid29 { border-top:    2px solid #000000; }
+      #grid29, #grid38, #grid47 { border-right:  2px solid #000000; }
+      #grid45, #grid46, #grid47 { border-bottom: 2px solid #000000; }
+      #grid27, #grid36, #grid45 { border-left:   2px solid #000000; }
+
+      #grid30, #grid31, #grid32 { border-top:    2px solid #000000; }
+      #grid32, #grid41, #grid50 { border-right:  2px solid #000000; }
+      #grid48, #grid49, #grid50 { border-bottom: 2px solid #000000; }
+      #grid30, #grid39, #grid48 { border-left:   2px solid #000000; }
+
+      #grid33, #grid34, #grid35 { border-top:    2px solid #000000; }
+      #grid35, #grid44, #grid53 { border-right:  2px solid #000000; }
+      #grid51, #grid52, #grid53 { border-bottom: 2px solid #000000; }
+      #grid33, #grid42, #grid51 { border-left:   2px solid #000000; }
+
+      #grid54, #grid55, #grid56 { border-top:    2px solid #000000; }
+      #grid56, #grid65, #grid74 { border-right:  2px solid #000000; }
+      #grid72, #grid73, #grid74 { border-bottom: 2px solid #000000; }
+      #grid54, #grid63, #grid72 { border-left:   2px solid #000000; }
+
+      #grid57, #grid58, #grid59 { border-top:    2px solid #000000; }
+      #grid59, #grid68, #grid77 { border-right:  2px solid #000000; }
+      #grid75, #grid76, #grid77 { border-bottom: 2px solid #000000; }
+      #grid57, #grid66, #grid75 { border-left:   2px solid #000000; }
+
+      #grid60, #grid61, #grid62 { border-top:    2px solid #000000; }
+      #grid62, #grid71, #grid80 { border-right:  2px solid #000000; }
+      #grid78, #grid79, #grid80 { border-bottom: 2px solid #000000; }
+      #grid60, #grid69, #grid78 { border-left:   2px solid #000000; }
+
+    </style>
+  </head>
+  <body>
+    <div>
+        <div class="container">
+        
+        <h1>Fill the box to get answer!</h1>
+        <form action = "{{url_for('getsol')}}" method="POST">
+          <table id="grid">
+
+              <tr>
+              <td><input id="grid0"  name = "b0"  type="text"></td>
+              <td><input id="grid1"  name = "b1"  type="text"></td>
+              <td><input id="grid2"  name = "b2"  type="text"></td>
+              
+              <td><input id="grid3"  name = "b3"  type="text"></td>
+              <td><input id="grid4"  name = "b4"  type="text"></td>
+              <td><input id="grid5"  name = "b5"  type="text"></td>
+              
+              <td><input id="grid6"  name = "b6"  type="text"></td>
+              <td><input id="grid7"  name = "b7"  type="text"></td>
+              <td><input id="grid8"  name = "b8"  type="text"></td>
+              </tr>
+
+              <tr>
+              <td><input id="grid9"  name = "b9"  type="text"></td>
+              <td><input id="grid10" name = "b10" type="text"></td>
+              <td><input id="grid11" name = "b11" type="text"></td>
+              
+              <td><input id="grid12" name = "b12" type="text"></td>
+              <td><input id="grid13" name = "b13" type="text"></td>
+              <td><input id="grid14" name = "b14" type="text"></td>
+              
+              <td><input id="grid15" name = "b15" type="text"></td>
+              <td><input id="grid16" name = "b16" type="text"></td>
+              <td><input id="grid17" name = "b17" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid18" name = "b18" type="text"></td>
+              <td><input id="grid19" name = "b19" type="text"></td>
+              <td><input id="grid20" name = "b20" type="text"></td>
+              
+              <td><input id="grid21" name = "b21" type="text"></td>
+              <td><input id="grid22" name = "b22" type="text"></td>
+              <td><input id="grid23" name = "b23" type="text"></td>
+              
+              <td><input id="grid24" name = "b24" type="text"></td>
+              <td><input id="grid25" name = "b25" type="text"></td>
+              <td><input id="grid26" name = "b26" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid27" name = "b27" type="text"></td>
+              <td><input id="grid28" name = "b28" type="text"></td>
+              <td><input id="grid29" name = "b29" type="text"></td>
+              
+              <td><input id="grid30" name = "b30" type="text"></td>
+              <td><input id="grid31" name = "b31" type="text"></td>
+              <td><input id="grid32" name = "b32" type="text"></td>
+              
+              <td><input id="grid33" name = "b33" type="text"></td>
+              <td><input id="grid34" name = "b34" type="text"></td>
+              <td><input id="grid35" name = "b35" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid36" name = "b36" type="text"></td>
+              <td><input id="grid37" name = "b37" type="text"></td>
+              <td><input id="grid38" name = "b38" type="text"></td>
+              
+              <td><input id="grid39" name = "b39" type="text"></td>
+              <td><input id="grid40" name = "b40" type="text"></td>
+              <td><input id="grid41" name = "b41" type="text"></td>
+              
+              <td><input id="grid42" name = "b42" type="text"></td>
+              <td><input id="grid43" name = "b43" type="text"></td>
+              <td><input id="grid44" name = "b44" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid45" name = "b45" type="text"></td>
+              <td><input id="grid46" name = "b46" type="text"></td>
+              <td><input id="grid47" name = "b47" type="text"></td>
+              
+              <td><input id="grid48" name = "b48" type="text"></td>
+              <td><input id="grid49" name = "b49" type="text"></td>
+              <td><input id="grid50" name = "b50" type="text"></td>
+              
+              <td><input id="grid51" name = "b51" type="text"></td>
+              <td><input id="grid52" name = "b52" type="text"></td>
+              <td><input id="grid53" name = "b53" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid54" name = "b54" type="text"></td>
+              <td><input id="grid55" name = "b55" type="text"></td>
+              <td><input id="grid56" name = "b56" type="text"></td>
+              
+              <td><input id="grid57" name = "b57" type="text"></td>
+              <td><input id="grid58" name = "b58" type="text"></td>
+              <td><input id="grid59" name = "b59" type="text"></td>
+              
+              <td><input id="grid60" name = "b60" type="text"></td>
+              <td><input id="grid61" name = "b61" type="text"></td>
+              <td><input id="grid62" name = "b62" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid63" name = "b63" type="text"></td>
+              <td><input id="grid64" name = "b64" type="text"></td>
+              <td><input id="grid65" name = "b65" type="text"></td>
+              
+              <td><input id="grid66" name = "b66" type="text"></td>
+              <td><input id="grid67" name = "b67" type="text"></td>
+              <td><input id="grid68" name = "b68" type="text"></td>
+              
+              <td><input id="grid69" name = "b69" type="text"></td>
+              <td><input id="grid70" name = "b70" type="text"></td>
+              <td><input id="grid71" name = "b71" type="text"></td>
+              </tr>
+
+              <tr>          
+              <td><input id="grid72" name = "b72" type="text"></td>
+              <td><input id="grid73" name = "b73" type="text"></td>
+              <td><input id="grid74" name = "b74" type="text"></td>
+              
+              <td><input id="grid75" name = "b75" type="text"></td>
+              <td><input id="grid76" name = "b76" type="text"></td>
+              <td><input id="grid77" name = "b77" type="text"></td>
+              
+              <td><input id="grid78" name = "b78" type="text"></td>
+              <td><input id="grid79" name = "b79" type="text"></td>
+              <td><input id="grid80" name = "b80" type="text"></td>
+              </tr>
+
+          </table>
+          <button>Get Solution!</button>
+
+        </form>
+        
+        </div>
+
+        
+    </div>
+
+  </body>
+</html>

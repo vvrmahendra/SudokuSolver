@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Sudoku Solver!</title>
+    
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style type="text/css">
+    
+      html, body {
+        background-color: #FAFAFA
+      }
+
+      table {
+        border: 2px solid #000000;
+      }
+
+      td {
+        border: 1px solid #000000;
+        text-align: center;
+        vertical-align: middle;  
+      }
+
+      .box {
+        color: #000000;
+        padding: 0;
+        border: 0;
+        text-align: center;
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        background-color: #FFFFFF;
+        outline: none;
+      }
+
+      .box {
+        background-color: #EEEEEE;
+      }
+
+      #grid0,  #grid1,  #grid2  { border-top:    2px solid #000000; }
+      #grid2,  #grid11, #grid20 { border-right:  2px solid #000000; }
+      #grid18, #grid19, #grid20 { border-bottom: 2px solid #000000; }
+      #grid0,  #grid9,  #grid18 { border-left:   2px solid #000000; }
+
+      #grid3,  #grid4,  #grid5  { border-top:    2px solid #000000; }
+      #grid5,  #grid14, #grid23 { border-right:  2px solid #000000; }
+      #grid21, #grid22, #grid23 { border-bottom: 2px solid #000000; }
+      #grid3,  #grid12, #grid21 { border-left:   2px solid #000000; }
+
+      #grid6,  #grid7,  #grid8  { border-top:    2px solid #000000; }
+      #grid8,  #grid17, #grid26 { border-right:  2px solid #000000; }
+      #grid24, #grid25, #grid26 { border-bottom: 2px solid #000000; }
+      #grid6,  #grid15, #grid24 { border-left:   2px solid #000000; }
+
+      #grid27, #grid28, #grid29 { border-top:    2px solid #000000; }
+      #grid29, #grid38, #grid47 { border-right:  2px solid #000000; }
+      #grid45, #grid46, #grid47 { border-bottom: 2px solid #000000; }
+      #grid27, #grid36, #grid45 { border-left:   2px solid #000000; }
+
+      #grid30, #grid31, #grid32 { border-top:    2px solid #000000; }
+      #grid32, #grid41, #grid50 { border-right:  2px solid #000000; }
+      #grid48, #grid49, #grid50 { border-bottom: 2px solid #000000; }
+      #grid30, #grid39, #grid48 { border-left:   2px solid #000000; }
+
+      #grid33, #grid34, #grid35 { border-top:    2px solid #000000; }
+      #grid35, #grid44, #grid53 { border-right:  2px solid #000000; }
+      #grid51, #grid52, #grid53 { border-bottom: 2px solid #000000; }
+      #grid33, #grid42, #grid51 { border-left:   2px solid #000000; }
+
+      #grid54, #grid55, #grid56 { border-top:    2px solid #000000; }
+      #grid56, #grid65, #grid74 { border-right:  2px solid #000000; }
+      #grid72, #grid73, #grid74 { border-bottom: 2px solid #000000; }
+      #grid54, #grid63, #grid72 { border-left:   2px solid #000000; }
+
+      #grid57, #grid58, #grid59 { border-top:    2px solid #000000; }
+      #grid59, #grid68, #grid77 { border-right:  2px solid #000000; }
+      #grid75, #grid76, #grid77 { border-bottom: 2px solid #000000; }
+      #grid57, #grid66, #grid75 { border-left:   2px solid #000000; }
+
+      #grid60, #grid61, #grid62 { border-top:    2px solid #000000; }
+      #grid62, #grid71, #grid80 { border-right:  2px solid #000000; }
+      #grid78, #grid79, #grid80 { border-bottom: 2px solid #000000; }
+      #grid60, #grid69, #grid78 { border-left:   2px solid #000000; }
+
+    </style>
+  </head>
+  <body>
+    <div>
+        <div class="container">
+        
+        <h1>Here you go!</h1>
+        
+          <table id="grid">
+                {% for i in range(9) %}
+                
+                    <tr>
+                        <td><div id="grid{{9*i+0}}" class = "box">{{A[9*i+0]}}</div></td>
+                        <td><div id="grid{{9*i+1}}" class = "box">{{A[9*i+1]}}</div></td>
+                        <td><div id="grid{{9*i+2}}" class = "box">{{A[9*i+2]}}</div></td>
+                        
+                        <td><div id="grid{{9*i+3}}" class = "box">{{A[9*i+3]}}</div></td>
+                        <td><div id="grid{{9*i+4}}" class = "box">{{A[9*i+4]}}</div></td>
+                        <td><div id="grid{{9*i+5}}" class = "box">{{A[9*i+5]}}</div></td>
+                        
+                        <td><div id="grid{{9*i+6}}" class = "box">{{A[9*i+6]}}</div></td>
+                        <td><div id="grid{{9*i+7}}" class = "box">{{A[9*i+7]}}</div></td>
+                        <td><div id="grid{{9*i+8}}" class = "box">{{A[9*i+8]}}</div></td>
+                        </tr>
+                {% endfor %}
+
+          </table>
+          <div>Glad I could help you</div>
+
+          <a href="/">Click here for other inputs</a>
+        
+        </div>
+
+        
+    </div>
+
+  </body>
+</html>
