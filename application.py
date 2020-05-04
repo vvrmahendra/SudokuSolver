@@ -12,8 +12,12 @@ def getsol():
     for i in range(9):
         for j in range(9):
             value = request.form.get("b"+str(9*i+j))
-            if value:
+            if (value.isdigit() and 0<int(value)<10):
                 arr[i][j] = value
+            elif value == "":
+                pass
+            else:
+                return render_template("lol.html")
 
     A = Solver().solver(arr)
     if A == []:
